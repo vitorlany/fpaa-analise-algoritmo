@@ -12,14 +12,14 @@ public class PrimeiraParte {
         Data data = Data.getInstance();
         List<Integer> tamanhos = List.of(62_500, 125_000, 250_000, 375_000);
 
-        tamanhos.forEach(vector -> SortUtil.executar(vector,
+        tamanhos.forEach(size -> SortUtil.executar(
+                SortUtil.loadData(size, TEST_RANGE),
                 BubbleSort.INSTANCE,
-                PrimeiraParte.TEST_RANGE,
                 data.resultadosBubble));
 
-        tamanhos.forEach(vector -> SortUtil.executar(vector,
+        tamanhos.forEach(size -> SortUtil.executar(
+                SortUtil.loadData(size, TEST_RANGE),
                 MergeSort.INSTANCE,
-                PrimeiraParte.TEST_RANGE,
                 data.resultadosMerge));
 
         data.save();

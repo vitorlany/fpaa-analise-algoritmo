@@ -12,6 +12,7 @@ public class Data implements Serializable {
     public HashMap<Integer, Long> resultadosBubble = new HashMap<>();
     public HashMap<Integer, Long> resultadosMerge = new HashMap<>();
     public HashMap<Integer, Long> resultadosQuick = new HashMap<>();
+    public HashMap<Integer, Long> resultadosQuickSort = new HashMap<>();
 
     private Data() {
     }
