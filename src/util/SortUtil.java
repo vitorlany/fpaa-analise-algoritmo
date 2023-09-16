@@ -1,21 +1,18 @@
-import sort.BubbleSort;
-import sort.MergeSort;
+package util;
+
 import sort.Sorter;
-import util.Data;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
-// https://www.geeksforgeeks.org/sorting-algorithms/
-public class RunTest {
-    private static final int TEST_RANGE = 50;
 
-    private static List<int[]> fillVectorList(int size) {
+public class SortUtil {
+
+    private static List<int[]> fillVectorList(int size, int vectorsQuantity) {
         List<int[]> vector = new ArrayList<>();
-        IntStream.range(0,TEST_RANGE).forEach(index -> {
+        IntStream.range(0, vectorsQuantity).forEach(index -> {
             int[] ints = new int[size];
             fillVectorWithRandomInts(ints);
             vector.add(ints);
@@ -29,11 +26,11 @@ public class RunTest {
         }
     }
 
-    private static List<int[]> loadData(int size) {
+    private static List<int[]> loadData(int size, int vectorsQuantity) {
         Data data = Data.getInstance();
         List<int[]> list = data.vectors.get(size);
         if (list == null) {
-            List<int[]> vectorList = fillVectorList(size);
+            List<int[]> vectorList = fillVectorList(size, vectorsQuantity);
             data.vectors.put(size, vectorList);
             data.save();
             list = vectorList;
@@ -41,23 +38,15 @@ public class RunTest {
         return list;
     }
 
-    public static void main(String[] args) {
-        Data data = Data.getInstance();
-        List<Integer> tamanhos = List.of(62_500, 125_000, 250_000, 375_000);
-        tamanhos.forEach(v -> RunTest.executar(v, BubbleSort.INSTANCE, data.resultadosBubble));
-        tamanhos.forEach(v -> RunTest.executar(v, MergeSort.INSTANCE, data.resultadosMerge));
-        data.save();
-    }
-
-    public static void executar(int size, Sorter sorter, HashMap<Integer, Long> resultados) {
-        List<int[]> vectorList = loadData(size);
+    public static void executar(int size, Sorter sorter, int vectorsQuantity, HashMap<Integer, Long> resultados) {
+        List<int[]> vectorList = loadData(size, vectorsQuantity);
         List<Long> times = new ArrayList<>();
 
         System.out.println("========= " + size + " =========");
 
         vectorList.forEach(vector -> {
             long inicio = System.currentTimeMillis();
-            System.out.println(vectorList.indexOf(vector)+1+"/"+TEST_RANGE);
+            System.out.println(vectorList.indexOf(vector)+1+"/"+vectorsQuantity);
             sorter.sort(vector);
             long fim = System.currentTimeMillis();
             long tempoExecucao = fim - inicio;

@@ -5,6 +5,7 @@ public class TestResult {
         Data data = Data.getInstance();
         System.out.println(data.vectors);
         System.out.println(data.resultadosBubble);
+        System.out.println(data.resultadosMerge);
         System.out.println(data.resultadosQuick);
     }
 }

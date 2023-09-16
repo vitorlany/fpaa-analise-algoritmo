@@ -1,7 +1,6 @@
 package sort;
 // Optimized java implementation of Bubble sort
 // https://www.geeksforgeeks.org/bubble-sort/
-import java.io.*;
 
 public class BubbleSort implements Sorter {
     public static BubbleSort INSTANCE = new BubbleSort();
