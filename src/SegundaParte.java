@@ -15,15 +15,13 @@ public class SegundaParte {
         List<int[]> list = SortUtil.loadData(size, TEST_RANGE);
 
         SortUtil.executar(
-                SortUtil.loadData(size, TEST_RANGE),
+                list,
                 QuickSort.INSTANCE,
                 data.resultadosQuick);
 
         SortUtil.executar(
-                SortUtil.loadData(size, TEST_RANGE),
+                list,
                 QuickSort.INSTANCE,
                 data.resultadosQuickSorted);
-
-        data.save();
     }
 }
