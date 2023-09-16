@@ -21,7 +21,5 @@ public class PrimeiraParte {
                 SortUtil.loadData(size, TEST_RANGE),
                 MergeSort.INSTANCE,
                 data.resultadosMerge));
-
-        data.save();
     }
 }
