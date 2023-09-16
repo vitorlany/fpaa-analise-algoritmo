@@ -3,10 +3,14 @@ package sort;
 // https://www.geeksforgeeks.org/bubble-sort/
 import java.io.*;
 
-public class BubbleSort {
+public class BubbleSort implements Sorter {
+    public static BubbleSort INSTANCE = new BubbleSort();
+
+    private BubbleSort() {
+    }
 
     // An optimized version of Bubble Sort
-    static void bubbleSort(int arr[], int n)
+    private static void bubbleSort(int arr[], int n)
     {
         int i, j, temp;
         boolean swapped;
@@ -30,8 +34,9 @@ public class BubbleSort {
         }
     }
 
-    public static void sort(int[] array) {
-        bubbleSort(array, array.length);
+    @Override
+    public void sort(int[] array) {
+        BubbleSort.bubbleSort(array, array.length);
     }
 }
 

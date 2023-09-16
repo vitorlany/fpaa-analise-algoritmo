@@ -1,5 +1,6 @@
 package util;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -8,7 +9,8 @@ public class Data implements Serializable {
     private static Data INSTANCE;
 
     public HashMap<Integer, List<int[]>> vectors = new HashMap<>();
-    public HashMap<Integer, Long> resultados = new HashMap<>();
+    public HashMap<Integer, Long> resultadosBubble = new HashMap<>();
+    public HashMap<Integer, Long> resultadosQuick = new HashMap<>();
 
     private Data() {
     }
@@ -16,8 +18,11 @@ public class Data implements Serializable {
     public static Data getInstance() {
         if (INSTANCE == null) {
             Data data = new Data();
-            data = Util.unSerialize(data);
-            data.save();
+            try {
+                data = Util.unSerialize(data);
+            } catch (Exception e) {
+                data.save();
+            }
             INSTANCE = data;
             return data;
         }
@@ -26,6 +31,10 @@ public class Data implements Serializable {
     }
 
     public void save() {
-        Util.serialize(this);
+        try {
+            Util.serialize(this);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
