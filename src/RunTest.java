@@ -1,5 +1,5 @@
 import sort.BubbleSort;
-import sort.QuickSort;
+import sort.MergeSort;
 import sort.Sorter;
 import util.Data;
 
@@ -44,8 +44,8 @@ public class RunTest {
     public static void main(String[] args) {
         Data data = Data.getInstance();
         List<Integer> tamanhos = List.of(62_500, 125_000, 250_000, 375_000);
-//        tamanhos.forEach(v -> RunTest.executar(v, BubbleSort.INSTANCE, data.resultadosBubble));
-        tamanhos.forEach(v -> RunTest.executar(v, QuickSort.INSTANCE, data.resultadosQuick));
+        tamanhos.forEach(v -> RunTest.executar(v, BubbleSort.INSTANCE, data.resultadosBubble));
+        tamanhos.forEach(v -> RunTest.executar(v, MergeSort.INSTANCE, data.resultadosMerge));
         data.save();
     }
 
@@ -67,6 +67,6 @@ public class RunTest {
 
         long tempoMedioTotal = (long) times.stream().mapToLong(l -> l).average().orElse(0);
         resultados.put(size, tempoMedioTotal);
-        System.out.println("Tempo médio total: " + TimeUnit.MILLISECONDS.toSeconds(tempoMedioTotal) + "s");
+        System.out.println("Tempo médio total: " + tempoMedioTotal + "ms");
     }
 }

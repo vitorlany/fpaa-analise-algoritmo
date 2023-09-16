@@ -1,7 +1,6 @@
 package sort;
-// Java implementation of QuickSort
+// Optimized java implementation of Quick Sort
 // https://www.geeksforgeeks.org/quick-sort/
-import java.io.*;
 
 public class QuickSort implements Sorter {
     public static QuickSort INSTANCE = new QuickSort();
@@ -9,7 +8,6 @@ public class QuickSort implements Sorter {
     private QuickSort() {
     }
 
-    // A utility function to swap two elements
     static void swap(int[] arr, int i, int j)
     {
         int temp = arr[i];
@@ -62,14 +60,19 @@ public class QuickSort implements Sorter {
             quickSort(arr, pi + 1, high);
         }
     }
-
-    // Driver Code
-    public void sort(int[] array)
+    // To print sorted array
+    public static void printArr(int[] arr)
     {
-        int N = array.length;
-        quickSort(array, 0, N - 1);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+
+    @Override
+    public void sort(int[] array) {
+        QuickSort.quickSort(array, 0, array.length - 1);
     }
 }
 
-// This code is contributed by Ayush Choudhary
-// Improved by Ajay Virmoti
+// This code is contributed
+// by Nikita Tiwari.
