@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 // https://www.geeksforgeeks.org/sorting-algorithms/
 public class RunTest {
-    private static final int TEST_RANGE = 1;
+    private static final int TEST_RANGE = 50;
 
     private static List<int[]> fillVectorList(int size) {
         List<int[]> vector = new ArrayList<>();
@@ -43,9 +43,8 @@ public class RunTest {
 
     public static void main(String[] args) {
         Data data = Data.getInstance();
-//        List<Integer> tamanhos = List.of(62_500, 125_000, 250_000, 375_000);
-        List<Integer> tamanhos = List.of(1);
-        tamanhos.forEach(v -> RunTest.executar(v, BubbleSort.INSTANCE, data.resultadosBubble));
+        List<Integer> tamanhos = List.of(62_500, 125_000, 250_000, 375_000);
+//        tamanhos.forEach(v -> RunTest.executar(v, BubbleSort.INSTANCE, data.resultadosBubble));
         tamanhos.forEach(v -> RunTest.executar(v, QuickSort.INSTANCE, data.resultadosQuick));
         data.save();
     }
