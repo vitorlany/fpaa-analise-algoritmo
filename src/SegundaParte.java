@@ -1,4 +1,4 @@
-import sort.BubbleSort;
+import sort.MergeSort;
 import sort.QuickSort;
 import util.Data;
 import util.SortUtil;
@@ -11,11 +11,19 @@ public class SegundaParte {
 
     public static void main(String[] args) {
         Data data = Data.getInstance();
-        List<Integer> tamanhos = List.of(10_000);
+        int size = 10_000;
+        List<int[]> list = SortUtil.loadData(size, TEST_RANGE);
 
-        tamanhos.forEach(size -> SortUtil.executar(
+        SortUtil.executar(
                 SortUtil.loadData(size, TEST_RANGE),
-                BubbleSort.INSTANCE,
-                data.resultadosBubble));
+                QuickSort.INSTANCE,
+                data.resultadosQuick);
+
+        SortUtil.executar(
+                SortUtil.loadData(size, TEST_RANGE),
+                QuickSort.INSTANCE,
+                data.resultadosQuickSorted);
+
+        data.save();
     }
 }

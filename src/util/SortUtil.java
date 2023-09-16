@@ -39,14 +39,15 @@ public class SortUtil {
     }
 
     public static List<int[]> executar(List<int[]> vectorList, Sorter sorter, HashMap<Integer, Long> resultados) {
-        int size = vectorList.size();
+        int testRange = vectorList.size();
+        int size = vectorList.get(0).length;
         List<Long> times = new ArrayList<>();
 
         System.out.println("========= " + size + " =========");
 
         vectorList.forEach(vector -> {
             long inicio = System.currentTimeMillis();
-            System.out.println(vectorList.indexOf(vector)+1+"/"+size);
+            System.out.println(vectorList.indexOf(vector)+1+"/"+testRange);
             sorter.sort(vector);
             long fim = System.currentTimeMillis();
             long tempoExecucao = fim - inicio;
@@ -55,7 +56,7 @@ public class SortUtil {
         });
 
         long tempoMedioTotal = (long) times.stream().mapToLong(l -> l).average().orElse(0);
-        resultados.put(vectorList.get(0).length, tempoMedioTotal);
+        resultados.put(size, tempoMedioTotal);
         System.out.println("Tempo médio total: " + tempoMedioTotal + "ms");
         return vectorList;
     }
